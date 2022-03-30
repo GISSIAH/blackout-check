@@ -2,10 +2,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import dynamic from 'next/dynamic'
-import { Card, CardContent, Container, Table, TableCell, TableRow, TableHead, Typography } from '@mui/material';
+import { Card, CardContent, Container, Table, TableCell, TableRow, TableHead, Typography, Button } from '@mui/material';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { getDay } from 'date-fns'
+import { baseUrl } from '../helpers/strings';
+
 export default function Home() {
   const Map = dynamic(() => import("../components/map"), { ssr: false });
   const [daySchedule, setDaySchedule] = useState([])
@@ -17,14 +18,14 @@ export default function Home() {
     let d= new Date().getDay()
     console.log(d);
     //const day = getDay(parseIso(Date()))
-    axios.get(`http://localhost:5000/schedule/day/?d=${d}`).then((res) => {
+    axios.get(`${baseUrl}/schedule/day/?d=${d}`).then((res) => {
       //console.log(res.data);
       setDaySchedule(res.data)
     }).catch(err => {
       //console.log(err);
       alert("Error while loading day schedule")
     })
-    axios.get("http://localhost:5000/all/schedule").then((res) => {
+    axios.get(`${baseUrl}/all/schedule`).then((res) => {
       setMapDataA(res.data.features.filter(ft => ft.properties.group === 'A'))
       setMapDataB( res.data.features.filter(ft => ft.properties.group === 'B'))
       setMapDataC(res.data.features.filter(ft => ft.properties.group === 'C'))
@@ -46,7 +47,7 @@ export default function Home() {
         px: 1,
         display: 'flex',
         flexDirection: 'column',
-        gap: 5
+        gap: 2
       }}>
         <Card sx={{}}>
           <CardContent>
