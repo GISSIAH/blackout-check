@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 import { Card, CardContent, Container, Table, TableCell, TableRow, TableHead, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { getDay } from 'date-fns'
 export default function Home() {
   const Map = dynamic(() => import("../components/map"), { ssr: false });
   const [daySchedule, setDaySchedule] = useState([])
@@ -14,7 +14,10 @@ export default function Home() {
   const [mapDataB, setMapDataB] = useState()
   const [mapDataC, setMapDataC] = useState()
   useEffect(() => {
-    axios.get("http://localhost:5000/schedule/day/?d=2").then((res) => {
+    let d= new Date().getDay()
+    console.log(d);
+    //const day = getDay(parseIso(Date()))
+    axios.get(`http://localhost:5000/schedule/day/?d=${d}`).then((res) => {
       //console.log(res.data);
       setDaySchedule(res.data)
     }).catch(err => {
