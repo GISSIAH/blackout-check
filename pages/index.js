@@ -44,6 +44,7 @@ export default function Home() {
       </Head>
 
       <Container sx={{
+        py:4,
         px: 1,
         display: 'flex',
         flexDirection: 'column',
@@ -51,7 +52,7 @@ export default function Home() {
       }}>
         <Card sx={{}}>
           <CardContent>
-            <Typography variant='h6'>Today's Schedule</Typography>
+            <Typography variant='h6'>Today</Typography>
             <Table>
               <TableHead>
                 <TableCell>Group</TableCell>
