@@ -33,7 +33,7 @@ function getColor(h){
     
     let currentTimeHour = new Date().getHours()
     let lowerLimit = parseInt(h.substr(0,2))
-    console.log(lowerLimit);
+    console.log(currentTimeHour);
     //console.log(currentTimeHour,lowerLimit,(lowerLimit+6));
     if (currentTimeHour >= lowerLimit && currentTimeHour <= (lowerLimit+6) ){
         return "#808080"
