@@ -46,7 +46,7 @@ export default function Home() {
           </div>
           <Box sx={{}}>
             <Typography variant='subtitle1'>
-              Disclaimer:  The data used is not 100% accurate as we do not have ESCOM's official grid data. All information presented on this site shall not be taken as an official statement from ESCOM. For official statements, visit ESCOM's website.  
+              Disclaimer:  The data used is not 100% accurate as we do not have ESCOM official grid data. All information presented on this site shall not be taken as an official statement from ESCOM. For official statements, visit ESCOM website.  
             </Typography>
           </Box>
 
