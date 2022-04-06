@@ -63,7 +63,7 @@ export default function Home() {
             <Table>
               <TableHead>
                 <TableCell>Group</TableCell>
-                <TableCell>Period</TableCell>
+                <TableCell>From</TableCell>
                 <TableCell>Duration</TableCell>
               </TableHead>
               {
