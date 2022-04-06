@@ -21,9 +21,9 @@ export default function Map(props) {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url={maps.base}
             />
-            <GeoJSON  data={props.groupA} style={style} />
-            <GeoJSON  data={props.groupB} style={style}/>
-            <GeoJSON  data={props.groupC} style={style}/>
+            <GeoJSON  data={props.groupA} style={style}     />
+            <GeoJSON  data={props.groupB} style={style}  />
+            <GeoJSON  data={props.groupC} style={style} />
 
         </MapContainer>
     )
@@ -54,3 +54,9 @@ function style(feature) {
         fillOpacity: 0.5
     };
 };
+
+function onEachFeature(feature, layer) {
+    if (feature.properties && feature.properties.area) {
+        layer.bindPopup(feature.properties.area);
+    }
+}
