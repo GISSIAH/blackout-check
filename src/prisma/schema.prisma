@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// TODO: Find a better way to store the geojson
+
+model Areas {
+  id       String @id @default(cuid())
+  name     String
+  district String
+  group    String
+  geometry Json
+}
+
+model Groups {
+  id           String   @id @default(cuid())
+  date_updated String
+  schedule     String[]
+}
