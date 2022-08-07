@@ -1,1 +1,0 @@
-export const baseUrl = "https://blackout-check-api.herokuapp.com"
