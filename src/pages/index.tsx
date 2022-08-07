@@ -5,7 +5,7 @@ import HomeCard from "@/components/general/home.card";
 import { Box, Container, Typography } from "@mui/material";
 import styles from '../styles/Home.module.css'
 
-const MapWithNoSSR = dynamic(() => import("@/views/map"), {
+const MapWithNoSSR = dynamic(() => import("@/components/map/reaflet"), {
   ssr: false,
 });
 
@@ -37,6 +37,7 @@ const Home: NextPage = () => {
         }}
       >
         <HomeCard />
+        <MapWithNoSSR />
       </Container>
       <footer className={styles.footer}>
         <div>
