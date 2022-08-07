@@ -13,15 +13,37 @@ datasource db {
 // TODO: Find a better way to store the geojson
 
 model Areas {
-  id       String @id @default(cuid())
-  name     String
-  district String
-  group    String
-  geometry Json
+  id        String     @id @default(cuid())
+  name      String
+  district  String
+  geometry  Json
+  GroupArea GroupArea?
 }
 
 model Groups {
-  id           String   @id @default(cuid())
-  date_updated String
-  schedule     String[]
+  id        String      @id @default(cuid())
+  name      String
+  createdAt DateTime    @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime    @updatedAt @db.Timestamptz(3)
+  schedules Schedules[]
+  areas     GroupArea[]
+}
+
+model Schedules {
+  id        String   @id @default(cuid())
+  date      DateTime @db.Timestamptz(3)
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @db.Timestamptz(3)
+  start     String
+  end       String
+  group     Groups   @relation(fields: [groupId], references: [id])
+  groupId   String
+}
+
+model GroupArea {
+  id      String @id @default(cuid())
+  groupId String
+  areaId  String @unique
+  area    Areas  @relation(fields: [areaId], references: [id])
+  group   Groups @relation(fields: [groupId], references: [id])
 }

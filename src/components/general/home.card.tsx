@@ -1,16 +1,12 @@
 import { Schedule } from "@/types";
-import {
-  Card,
-  CardContent,
-  Table,
-  TableCell,
-  TableHead,
-  TableRow,
-  Typography,
-} from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
+import clsx from "clsx";
 
-const HomeCard = () => {
+interface IHomeCard {
+  className?: string;
+}
+
+const HomeCard = ({ className }: IHomeCard) => {
   const { isLoading, error, data } = useQuery<Schedule[]>(
     ["scheduleData"],
     (): Schedule[] => {
@@ -23,30 +19,23 @@ const HomeCard = () => {
   if (error) return <>An error has occurred</>;
 
   return (
-    <div>
-      <Card sx={{}}>
-        <CardContent>
-          <Typography variant="h6" sx={{ fontWeight: 400 }}>
-            Today
-          </Typography>
-          <Table>
-            <TableHead>
-              <TableCell>Group</TableCell>
-              <TableCell>From</TableCell>
-              <TableCell>Duration</TableCell>
-            </TableHead>
-            {data?.map((daysch, index) => {
-              return (
-                <TableRow key={index}>
-                  <TableCell>{daysch.name}</TableCell>
-                  <TableCell>{daysch.period}</TableCell>
-                  <TableCell>{daysch.duration}</TableCell>
-                </TableRow>
-              );
-            })}
-          </Table>
-        </CardContent>
-      </Card>
+    <div className={clsx(className, "p-8")}>
+      <div className="h-full bg-white p-8 rounded-2xl">
+        <div>
+          <h6>Today</h6>
+          {data?.map((daysch, index) => {
+            return (
+              <div key={index} className="rounded-lg bg-slate-50 p-8">
+                <div className="flex flex-col">
+                  <td>{daysch.name}</td>
+                  <td>{daysch.period}</td>
+                  <td>{daysch.duration}</td>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };
