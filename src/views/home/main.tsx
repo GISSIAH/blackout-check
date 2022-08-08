@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import HomeCard from "@/components/general/home.card";
+import HomeCard from "@/views/home/home.card";
 import { useMediaQuery } from "usehooks-ts";
 
 type Props = {};

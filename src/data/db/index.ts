@@ -10,14 +10,17 @@ export const getAreas = async () => {
   return data;
 };
 
-
 export const getRegions = async () => {
-  const data = await prisma.region.findMany()
-  return data
-}
+  const data = await prisma.region.findMany();
+  return data;
+};
 
-export const getRegionsAndDistricts = async () => {
-  const data = await prisma.region.findMany({ include : {
-    
-  }})
-}
+export const getAreasWithRequiredData = async () => {
+  const data = await prisma.area.findMany({
+    include: {
+      group: true,
+    },
+  });
+
+  return data
+};

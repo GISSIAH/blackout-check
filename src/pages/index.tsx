@@ -1,16 +1,40 @@
-import type { GetStaticProps, NextPage } from "next";
+import type { GetServerSideProps, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import MainView from "@/views/home/main";
-import { getAreas, getGroups } from "@/data/db";
-import { Areas, Groups } from "@prisma/client";
+import {
+  getAreas,
+  getAreasWithRequiredData,
+  getGroups,
+  getRegions,
+} from "@/data/db";
+import { Area, Group, Region } from "@prisma/client";
+import nookies from "nookies";
+import { CookiesConstants } from "@/types/constants";
+import { useEffect } from "react";
+import { Provider, atom, useAtom, useSetAtom } from "jotai";
+import { areasAtoms, regionsAtoms } from "@/state/data";
 
 interface IHomeProps {
-  areas: Areas[];
-  groups: Groups[];
+  areas: Area[];
+  regions: Region[];
 }
 
-const Home: NextPage<IHomeProps> = ({ areas, groups }) => {
-  
+const Home: NextPage<IHomeProps> = ({ areas, regions }) => {
+  const [_, setAreaData] = useAtom(areasAtoms);
+  const [__, setRegionData] = useAtom(regionsAtoms);
+
+  useEffect(() => {
+    if (areas !== null && areas !== undefined) {
+      setAreaData(areas);
+    }
+  }, [areas, setAreaData]);
+
+  useEffect(() => {
+    if (regions !== null && regions !== undefined) {
+      setRegionData(regions);
+    }
+  }, [regions, setRegionData]);
+
   return (
     <>
       <Head>
@@ -26,16 +50,23 @@ const Home: NextPage<IHomeProps> = ({ areas, groups }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const groups = await getGroups();
-  const areas = await getAreas();
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const cookies = nookies.get(ctx);
+
+  const region = nookies.get(ctx, CookiesConstants.UserRegion);
+
+  if (region === undefined || region === null) {
+  }
+
+  const regions = await getRegions();
+  const areas = await getAreasWithRequiredData();
 
   return {
     props: {
-      groups: JSON.parse(JSON.stringify(groups)),
+      regions: JSON.parse(JSON.stringify(regions)),
       areas: JSON.parse(JSON.stringify(areas)),
     },
-    revalidate: 10,
+    // revalidate: 10,
   };
 };
 
