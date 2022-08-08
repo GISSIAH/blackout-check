@@ -12,31 +12,46 @@ datasource db {
 
 // TODO: Find a better way to store the geojson
 
-model Areas {
+model Region {
   id        String     @id @default(cuid())
   name      String
-  district  String
-  geometry  Json
-  GroupArea GroupArea?
+  districts District[]
 }
 
-model Groups {
+model District {
+  id       String @id @default(cuid())
+  name     String
+  regionId String
+  region   Region @relation(fields: [regionId], references: [id])
+  areas    Area[]
+}
+
+model Area {
+  id         String      @id @default(cuid())
+  name       String
+  geometry   Json
+  districtId String
+  district   District    @relation(fields: [districtId], references: [id])
+  GroupArea  GroupArea[]
+}
+
+model Group {
   id        String      @id @default(cuid())
   name      String
   createdAt DateTime    @default(now()) @db.Timestamptz(3)
   updatedAt DateTime    @updatedAt @db.Timestamptz(3)
-  schedules Schedules[]
+  schedules Schedule[]
   areas     GroupArea[]
 }
 
-model Schedules {
+model Schedule {
   id        String   @id @default(cuid())
   date      DateTime @db.Timestamptz(3)
   createdAt DateTime @default(now()) @db.Timestamptz(3)
   updatedAt DateTime @updatedAt @db.Timestamptz(3)
   start     String
   end       String
-  group     Groups   @relation(fields: [groupId], references: [id])
+  group     Group    @relation(fields: [groupId], references: [id])
   groupId   String
 }
 
@@ -44,6 +59,6 @@ model GroupArea {
   id      String @id @default(cuid())
   groupId String
   areaId  String @unique
-  area    Areas  @relation(fields: [areaId], references: [id])
-  group   Groups @relation(fields: [groupId], references: [id])
+  area    Area   @relation(fields: [areaId], references: [id])
+  group   Group  @relation(fields: [groupId], references: [id])
 }

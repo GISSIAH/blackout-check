@@ -1,11 +1,16 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import MainView from "@/views/home/main";
-import { getGroups } from "@/data/db";
+import { getAreas, getGroups } from "@/data/db";
+import { Areas, Groups } from "@prisma/client";
 
-const Home: NextPage = (props) => {
-  console.log(props);
+interface IHomeProps {
+  areas: Areas[];
+  groups: Groups[];
+}
 
+const Home: NextPage<IHomeProps> = ({ areas, groups }) => {
+  
   return (
     <>
       <Head>
@@ -23,9 +28,13 @@ const Home: NextPage = (props) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const groups = await getGroups();
+  const areas = await getAreas();
 
   return {
-    props: { groups: JSON.parse(JSON.stringify(groups)) },
+    props: {
+      groups: JSON.parse(JSON.stringify(groups)),
+      areas: JSON.parse(JSON.stringify(areas)),
+    },
     revalidate: 10,
   };
 };

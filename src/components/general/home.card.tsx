@@ -22,6 +22,7 @@ const HomeCard = ({ className }: IHomeCard) => {
     <div className={clsx(className, "p-8")}>
       <div className="h-full bg-white p-8 rounded-2xl">
         <div>
+          <input type="text" name="" id="" placeholder="Search" />
           <h6>Today</h6>
           {data?.map((daysch, index) => {
             return (
