@@ -54,9 +54,9 @@ const HomeCard = ({ className }: IHomeCard) => {
               setSelectedRegion(value);
             }}
           />
-          <div className="h-full">
+          <div className="h-full mt-2">
             {filtedAreas?.map((area) => (
-              <div key={area.id} className="p-2 bg-slate-200 rounded-lg m-1">
+              <div key={area.id} className="p-2 bg-slate-200 rounded-lg m-1 cursor-pointer">
                 {area.name}
               </div>
             ))}

@@ -4,7 +4,7 @@ import { useMediaQuery } from "usehooks-ts";
 
 type Props = {};
 
-const MapWithNoSSR = dynamic(() => import("@/components/map/reaflet"), {
+const MapWithNoSSR = dynamic(() => import("@/components/map/d3geo"), {
   ssr: false,
 });
 
@@ -14,7 +14,7 @@ const MainView = (props: Props) => {
   return (
     <div className="flex flex-row h-full">
       <HomeCard className="md:w-1/3 w-full h-full" />
-      {matches && <MapWithNoSSR className="w-full h-full" />}
+      {matches && <MapWithNoSSR  />}
     </div>
   );
 };
