@@ -27,21 +27,22 @@ model District {
 }
 
 model Area {
-  id         String      @id @default(cuid())
+  id         String   @id @default(cuid())
   name       String
   geometry   Json
   districtId String
-  district   District    @relation(fields: [districtId], references: [id])
-  GroupArea  GroupArea[]
+  district   District @relation(fields: [districtId], references: [id])
+  groupId    String
+  group      Group    @relation(fields: [groupId], references: [id])
 }
 
 model Group {
-  id        String      @id @default(cuid())
+  id        String     @id @default(cuid())
   name      String
-  createdAt DateTime    @default(now()) @db.Timestamptz(3)
-  updatedAt DateTime    @updatedAt @db.Timestamptz(3)
+  createdAt DateTime   @default(now()) @db.Timestamptz(3)
+  updatedAt DateTime   @updatedAt @db.Timestamptz(3)
   schedules Schedule[]
-  areas     GroupArea[]
+  areas     Area[]
 }
 
 model Schedule {
@@ -53,12 +54,4 @@ model Schedule {
   end       String
   group     Group    @relation(fields: [groupId], references: [id])
   groupId   String
-}
-
-model GroupArea {
-  id      String @id @default(cuid())
-  groupId String
-  areaId  String @unique
-  area    Area   @relation(fields: [areaId], references: [id])
-  group   Group  @relation(fields: [groupId], references: [id])
 }

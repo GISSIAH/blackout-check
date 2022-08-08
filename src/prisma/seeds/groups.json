@@ -1,0 +1,378 @@
+[{
+  "_id": {
+    "$oid": "62690207f2999378c2b1a018"
+  },
+  "name": "A",
+  "date_updated": "17 May 2022",
+  "schedule": [
+    {
+      "day": "Monday",
+      "times": [
+        {
+          "from": "00:00",
+          "to": "02:00",
+          "duration": 2
+        },
+        {
+          "from": "02:00",
+          "to": "04:00",
+          "duration": 2
+        }
+      ]
+    },
+    {
+      "day": "Tuesday",
+      "times": [
+        {
+          "from": "05:30",
+          "to": "09:30",
+          "duration": 4
+        },
+        {
+          "from": "16:00",
+          "to": "19:30",
+          "duration": 3.5
+        }
+      ]
+    },
+    {
+      "day": "Wednesday",
+      "times": [
+        {
+          "from": "04:00",
+          "to": "05:30",
+          "duration": 1.5
+        },
+        {
+          "from": "05:30",
+          "to": "09:30",
+          "duration": 4
+        },
+        {
+          "from": "09:30",
+          "to": "11:30",
+          "duration": 2
+        }
+      ]
+    },
+    {
+      "day": "Thursday",
+      "times": [
+        {
+          "from": "16:00",
+          "to": "19:30",
+          "duration": 3.5
+        },
+        {
+          "from": "19:30",
+          "to": "23:30",
+          "duration": 4
+        }
+      ]
+    },
+    {
+      "day": "Friday",
+      "times": [
+        {
+          "from": "05:30",
+          "to": "09:30",
+          "duration": 4
+        },
+        {
+          "from": "16:00",
+          "to": "19:30",
+          "duration": 3.5
+        }
+      ]
+    },
+    {
+      "day": "Saturday",
+      "times": [
+        {
+          "from": "04:00",
+          "to": "05:30",
+          "duration": 1.5
+        },
+        {
+          "from": "05:30",
+          "to": "09:30",
+          "duration": 4
+        },
+        {
+          "from": "09:30",
+          "to": "11:30",
+          "duration": 2
+        }
+      ]
+    },
+    {
+      "day": "Sunday",
+      "times": [
+        {
+          "from": "00:00",
+          "to": "02:00",
+          "duration": 2
+        },
+        {
+          "from": "02:00",
+          "to": "04:00",
+          "duration": 2
+        }
+      ]
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62690317f2999378c2b1a01a"
+  },
+  "name": "B",
+  "date_updated": "17 May 2022",
+  "schedule": [
+    {
+      "day": "Monday",
+      "times": [
+        {
+          "from": "04:00",
+          "to": "05:30",
+          "duration": 1.5
+        },
+        {
+          "from": "05:30",
+          "to": "09:30",
+          "duration": 4
+        },
+        {
+          "from": "09:30",
+          "to": "11:30",
+          "duration": 2
+        }
+      ]
+    },
+    {
+      "day": "Tuesday",
+      "times": [
+        {
+          "from": "16:00",
+          "to": "19:30",
+          "duration": 3.5
+        },
+        {
+          "from": "19:30",
+          "to": "23:30",
+          "duration": 4
+        }
+      ]
+    },
+    {
+      "day": "Wednesday",
+      "times": [
+        {
+          "from": "05:30",
+          "to": "09:30",
+          "duration": 4
+        },
+        {
+          "from": "16:00",
+          "to": "19:30",
+          "duration": 3.5
+        }
+      ]
+    },
+    {
+      "day": "Thursday",
+      "times": [
+        {
+          "from": "04:00",
+          "to": "05:30",
+          "duration": 1.5
+        },
+        {
+          "from": "05:30",
+          "to": "09:30",
+          "duration": 4
+        },
+        {
+          "from": "09:30",
+          "to": "11:30",
+          "duration": 2
+        }
+      ]
+    },
+    {
+      "day": "Friday",
+      "times": [
+        {
+          "from": "16:00",
+          "to": "19:30",
+          "duration": 3.5
+        },
+        {
+          "from": "19:30",
+          "to": "23:30",
+          "duration": 4
+        }
+      ]
+    },
+    {
+      "day": "Saturday",
+      "times": [
+        {
+          "from": "05:30",
+          "to": "09:30",
+          "duration": 4
+        },
+        {
+          "from": "16:00",
+          "to": "19:30",
+          "duration": 3.5
+        }
+      ]
+    },
+    {
+      "day": "Sunday",
+      "times": [
+        {
+          "from": "04:00",
+          "to": "05:30",
+          "duration": 1.5
+        },
+        {
+          "from": "05:30",
+          "to": "09:30",
+          "duration": 4
+        },
+        {
+          "from": "09:30",
+          "to": "11:30",
+          "duration": 2
+        }
+      ]
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "626903c1f2999378c2b1a01c"
+  },
+  "name": "C",
+  "date_updated": "17 May 2022",
+  "schedule": [
+    {
+      "day": "Monday",
+      "times": [
+        {
+          "from": "05:30",
+          "to": "09:30",
+          "duration": 4
+        },
+        {
+          "from": "16:00",
+          "to": "19:30",
+          "duration": 3.5
+        }
+      ]
+    },
+    {
+      "day": "Tuesday",
+      "times": [
+        {
+          "from": "04:00",
+          "to": "05:30",
+          "duration": 1.5
+        },
+        {
+          "from": "05:30",
+          "to": "09:30",
+          "duration": 4
+        },
+        {
+          "from": "09:30",
+          "to": "11:30",
+          "duration": 2
+        }
+      ]
+    },
+    {
+      "day": "Wednesday",
+      "times": [
+        {
+          "from": "16:00",
+          "to": "19:30",
+          "duration": 3.5
+        },
+        {
+          "from": "19:30",
+          "to": "23:30",
+          "duration": 4
+        }
+      ]
+    },
+    {
+      "day": "Thursday",
+      "times": [
+        {
+          "from": "05:30",
+          "to": "09:30",
+          "duration": 4
+        },
+        {
+          "from": "16:00",
+          "to": "19:30",
+          "duration": 3.5
+        }
+      ]
+    },
+    {
+      "day": "Friday",
+      "times": [
+        {
+          "from": "04:00",
+          "to": "05:30",
+          "duration": 1.5
+        },
+        {
+          "from": "05:30",
+          "to": "09:30",
+          "duration": 4
+        },
+        {
+          "from": "09:30",
+          "to": "11:30",
+          "duration": 2
+        }
+      ]
+    },
+    {
+      "day": "Saturday",
+      "times": [
+        {
+          "from": "16:00",
+          "to": "19:30",
+          "duration": 3.5
+        },
+        {
+          "from": "19:30",
+          "to": "23:30",
+          "duration": 4
+        }
+      ]
+    },
+    {
+      "day": "Sunday",
+      "times": [
+        {
+          "from": "05:30",
+          "to": "09:30",
+          "duration": 4
+        },
+        {
+          "from": "16:00",
+          "to": "19:30",
+          "duration": 3.5
+        }
+      ]
+    }
+  ],
+  "__v": 0
+}]
