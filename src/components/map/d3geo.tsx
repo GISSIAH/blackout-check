@@ -19,7 +19,7 @@ function D3GeoMap() {
     <ComposableMap
       projection="geoOrthographic"
       projectionConfig={{
-        center: [35.1106396116, -13.0999951856],
+        center: [ 35.04702087069704, -15.708299283216842],
         scale: 4100,
       }}
     >
@@ -30,8 +30,9 @@ function D3GeoMap() {
             <Geography
               key={geo.rsmKey}
               geography={geo}
-              fill="#FF5533"
-              stroke="#000000"
+              // fill="#FF5533"
+              // stroke="#000000"
+              className="fill-green-500 dark:fill-slate-800"
             />
           ))
         }

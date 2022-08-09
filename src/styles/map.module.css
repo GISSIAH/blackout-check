@@ -1,6 +1,6 @@
 .map{
-
     width: 100%;
     border-radius: 20px;
     height: 100%;
+    @apply bg-slate-100 dark:bg-slate-600;
 }
