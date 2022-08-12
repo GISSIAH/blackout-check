@@ -1,33 +1,40 @@
-import type { GetServerSideProps, GetStaticProps, NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import MainView from "@/views/home/main";
 import {
-  getAreas,
   getAreasWithRequiredData,
-  getGroups,
+  getDistricts,
   getRegions,
 } from "@/data/db";
-import { Area, Group, Region } from "@prisma/client";
+import { Area, District, Region } from "@prisma/client";
 import nookies from "nookies";
 import { CookiesConstants } from "@/types/constants";
 import { useEffect } from "react";
-import { Provider, atom, useAtom, useSetAtom } from "jotai";
-import { areasAtoms, regionsAtoms } from "@/state/data";
+import { useAtom } from "jotai";
+import { areasAtoms, districtsAtoms, regionsAtoms } from "@/state/data";
 
 interface IHomeProps {
   areas: Area[];
   regions: Region[];
+  districts: District[];
 }
 
-const Home: NextPage<IHomeProps> = ({ areas, regions }) => {
+const Home: NextPage<IHomeProps> = ({ areas, regions, districts }) => {
   const [_, setAreaData] = useAtom(areasAtoms);
   const [__, setRegionData] = useAtom(regionsAtoms);
+  const [___, setDistrictData] = useAtom(districtsAtoms);
 
   useEffect(() => {
     if (areas !== null && areas !== undefined) {
       setAreaData(areas);
     }
   }, [areas, setAreaData]);
+
+  useEffect(() => {
+    if (districts !== null && districts !== undefined) {
+      setDistrictData(districts);
+    }
+  }, [districts, setDistrictData]);
 
   useEffect(() => {
     if (regions !== null && regions !== undefined) {
@@ -60,13 +67,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const regions = await getRegions();
   const areas = await getAreasWithRequiredData();
+  const districts = await getDistricts();
 
   return {
     props: {
       regions: JSON.parse(JSON.stringify(regions)),
       areas: JSON.parse(JSON.stringify(areas)),
-    },
-    // revalidate: 10,
+      districts: JSON.parse(JSON.stringify(districts))
+    }
   };
 };
 

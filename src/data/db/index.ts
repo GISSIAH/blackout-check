@@ -15,6 +15,11 @@ export const getRegions = async () => {
   return data;
 };
 
+export const getDistricts = async () => {
+  const data = await prisma.district.findMany();
+  return data;
+};
+
 export const getAreasWithRequiredData = async () => {
   const data = await prisma.area.findMany({
     include: {
