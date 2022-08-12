@@ -1,4 +1,5 @@
 import { Listbox, Transition } from "@headlessui/react";
+import clsx from "clsx";
 import { FC, Fragment, PropsWithChildren, ReactNode, useState } from "react";
 import {
   HiCheck as CheckIcon,
@@ -8,18 +9,20 @@ interface IProps {
   placeholder?: string;
   disabled?: boolean;
   onChange?: (value: any) => void;
+  className?: string;
 }
 
-export const SelectItem: FC<PropsWithChildren<{ value: string }>> = ({
-  value,
-  children,
-}) => {
+export const SelectItem: FC<
+  PropsWithChildren<{ value: string; className?: string }>
+> = ({ value, children, className }) => {
   return (
     <Listbox.Option
       className={({ active }) =>
-        `relative cursor-default select-none py-2 pl-10 pr-4 ${
-          active ? "bg-amber-100 text-amber-900" : "text-gray-900"
-        }`
+        clsx(
+          `relative cursor-default select-none py-2 pl-10 pr-4`,
+          active ? "bg-amber-100 text-amber-900" : "text-gray-900",
+          className
+        )
       }
       value={value}
     >
@@ -49,21 +52,23 @@ const Select: FC<PropsWithChildren<IProps>> = ({
   children,
   disabled,
   placeholder,
-  onChange
+  onChange,
+  className,
 }) => {
   const [selected, setSelected] = useState<string | undefined>();
 
   return (
-    <div className="w-full">
-      <Listbox value={selected} onChange={(value) => {
-        onChange?.(value)
-        setSelected(value)
-      }} disabled={disabled}>
+    <div className={clsx("w-full", className)}>
+      <Listbox
+        value={selected}
+        onChange={(value) => {
+          onChange?.(value);
+          setSelected(value);
+        }}
+        disabled={disabled}
+      >
         <div className="relative mt-1">
-          <Listbox.Button
-           
-            className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm"
-          >
+          <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
             <span className="block truncate">{selected ?? placeholder}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <SelectorIcon

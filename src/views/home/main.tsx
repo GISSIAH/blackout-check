@@ -13,8 +13,8 @@ const MainView = (props: Props) => {
 
   return (
     <div className="flex flex-row h-full">
-      <HomeCard className="md:w-1/3 w-full h-full" />
-      {matches && <MapWithNoSSR  className="w-full h-full"/>}
+      <HomeCard className="md:w-7/12 w-full h-full" />
+      {matches && <MapWithNoSSR className="w-full h-full" />}
     </div>
   );
 };
