@@ -6,6 +6,7 @@ import {
   HiSelector as SelectorIcon,
 } from "react-icons/hi";
 interface IProps {
+  value?: any;
   placeholder?: string;
   disabled?: boolean;
   onChange?: (value: any) => void;
@@ -49,27 +50,26 @@ export const SelectItem: FC<
 // TODO: Add proper placeholder styles
 
 const Select: FC<PropsWithChildren<IProps>> = ({
+  value,
   children,
   disabled,
   placeholder,
   onChange,
   className,
 }) => {
-  const [selected, setSelected] = useState<string | undefined>();
 
   return (
     <div className={clsx("w-full", className)}>
       <Listbox
-        value={selected}
+        value={value}
         onChange={(value) => {
           onChange?.(value);
-          setSelected(value);
         }}
         disabled={disabled}
       >
         <div className="relative mt-1">
           <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-            <span className="block truncate">{selected ?? placeholder}</span>
+            <span className="block truncate">{value ?? placeholder}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <SelectorIcon
                 className="h-5 w-5 text-gray-400"

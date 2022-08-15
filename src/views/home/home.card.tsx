@@ -11,9 +11,17 @@ interface IHomeCard {
 
 const RegionSelect = ({ onChange }: { onChange: (id: string) => void }) => {
   const [renameRegions] = useAtom(regionsAtoms);
-
+  const [selected, setSelected] = useState<any | undefined>();
   return (
-    <Select placeholder="Select Region" onChange={onChange} className="w-full">
+    <Select
+      placeholder="Select Region"
+      value={selected}
+      onChange={(vl) => {
+        setSelected(vl);
+        onChange(vl);
+      }}
+      className="w-full"
+    >
       {renameRegions?.map(({ name, id }) => (
         <SelectItem key={id} value={id}>
           {name}
@@ -26,12 +34,15 @@ const RegionSelect = ({ onChange }: { onChange: (id: string) => void }) => {
 const DistrictsSelect = ({
   districts,
   onChange,
+  value,
 }: {
   districts: District[] | null | undefined;
+  value?: string | null;
   onChange: (id: string) => void;
 }) => {
   return (
     <Select
+      value={value}
       placeholder="Select District"
       disabled={districts == undefined || districts == null}
       onChange={onChange}
@@ -88,14 +99,18 @@ const HomeCard = ({ className }: IHomeCard) => {
   );
   const [isSearching, setIsSearching] = useState(false);
   const [filtedAreas, setFilteredAreas] = useState<Area[] | undefined>();
-
+  const [selectedDistrict, setSelectedDistrict] = useState<
+    string | undefined | null
+  >();
   useEffect(() => {
     if (selectedRegion === undefined || selectedRegion == null) {
       setFilteredDistrict(null);
+      setSelectedDistrict(null);
     } else {
       setFilteredDistrict(
         districts?.filter((x) => x.regionId === selectedRegion)
       );
+      setSelectedDistrict(null);
     }
   }, [selectedRegion, districts]);
 
@@ -131,8 +146,10 @@ const HomeCard = ({ className }: IHomeCard) => {
                 }}
               />
               <DistrictsSelect
+                value={selectedDistrict}
                 districts={filteredDistrict}
                 onChange={(value) => {
+                  setSelectedDistrict(value);
                   onDistrictSelected(value);
                 }}
               />
@@ -145,7 +162,8 @@ const HomeCard = ({ className }: IHomeCard) => {
                 key={area.id}
                 className="p-2 bg-slate-200 rounded-lg m-1 cursor-pointer"
               >
-                {area.name}
+                <div>{area.name}</div>
+                <div>{area.groupId}</div>
               </div>
             ))}
           </div>
