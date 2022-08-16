@@ -4,25 +4,33 @@ import MainView from "@/views/home/main";
 import {
   getAreasWithRequiredData,
   getDistricts,
+  getGroups,
   getRegions,
 } from "@/data/db";
-import { Area, District, Region } from "@prisma/client";
+import { Area, District, Group, Region } from "@prisma/client";
 import nookies from "nookies";
 import { CookiesConstants } from "@/types/constants";
 import { useEffect } from "react";
 import { useAtom } from "jotai";
-import { areasAtoms, districtsAtoms, regionsAtoms } from "@/state/data";
+import {
+  areasAtoms,
+  districtsAtoms,
+  groupsAtoms,
+  regionsAtoms,
+} from "@/state/data";
 
 interface IHomeProps {
   areas: Area[];
   regions: Region[];
   districts: District[];
+  groups: Group[];
 }
 
-const Home: NextPage<IHomeProps> = ({ areas, regions, districts }) => {
+const Home: NextPage<IHomeProps> = ({ areas, regions, districts, groups }) => {
   const [_, setAreaData] = useAtom(areasAtoms);
   const [__, setRegionData] = useAtom(regionsAtoms);
   const [___, setDistrictData] = useAtom(districtsAtoms);
+  const [____, setGroupData] = useAtom(groupsAtoms);
 
   useEffect(() => {
     if (areas !== null && areas !== undefined) {
@@ -41,6 +49,12 @@ const Home: NextPage<IHomeProps> = ({ areas, regions, districts }) => {
       setRegionData(regions);
     }
   }, [regions, setRegionData]);
+
+  useEffect(() => {
+    if (groups !== null && groups !== undefined) {
+      setGroupData(groups);
+    }
+  }, [groups, setGroupData]);
 
   return (
     <>
@@ -68,13 +82,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const regions = await getRegions();
   const areas = await getAreasWithRequiredData();
   const districts = await getDistricts();
+  const groups = await getGroups();
 
   return {
     props: {
       regions: JSON.parse(JSON.stringify(regions)),
       areas: JSON.parse(JSON.stringify(areas)),
-      districts: JSON.parse(JSON.stringify(districts))
-    }
+      districts: JSON.parse(JSON.stringify(districts)),
+      groups: JSON.parse(JSON.stringify(groups)),
+    },
   };
 };
 

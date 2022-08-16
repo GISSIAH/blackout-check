@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import HomeCard from "@/views/home/home.card";
 import { useMediaQuery } from "usehooks-ts";
+import GroupTabsView from "./group.tabs";
 
 type Props = {};
 
@@ -13,7 +14,10 @@ const MainView = (props: Props) => {
 
   return (
     <div className="flex flex-row h-full">
-      <HomeCard className="md:w-7/12 w-full h-full" />
+      <div className="md:w-7/12 w-full h-full overflow-hidden">
+        <GroupTabsView />
+      </div>
+      {/* <HomeCard className="md:w-7/12 w-full h-full" /> */}
       {matches && <MapWithNoSSR className="w-full h-full" />}
     </div>
   );
