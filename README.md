@@ -8,13 +8,13 @@ Add the Postges DB URL to the environment variables
 To create the Database schema run the following
 
 ```bash
-npx prisma db push
+yarn db:push
 ```
 
 To seed data
 
 ```bash
-npx prisma db seed
+yarn db:seed
 ```
 
 ## Deploy on Vercel

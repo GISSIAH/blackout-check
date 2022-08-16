@@ -50,8 +50,8 @@ model Schedule {
   date      DateTime @db.Timestamptz(3)
   createdAt DateTime @default(now()) @db.Timestamptz(3)
   updatedAt DateTime @updatedAt @db.Timestamptz(3)
-  start     String
-  end       String
+  start     DateTime @default(now()) @db.Timestamptz(3)
+  end       DateTime @default(now()) @db.Timestamptz(3)
   group     Group    @relation(fields: [groupId], references: [id])
   groupId   String
 }
