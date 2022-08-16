@@ -1,5 +1,4 @@
 import React from "react";
-import { Box, Container, Typography } from "@mui/material";
 
 type Props = {};
 
@@ -7,7 +6,7 @@ const Footer = (props: Props) => {
   return (
     <footer>
       <div>
-        <Typography variant="caption">Made by ATTIC</Typography>
+        <p>Made by ATTIC</p>
         <a style={{ marginLeft: 15 }} href="https://twitter.com/atticgismw1">
           {/* <TwitterIcon /> */}
         </a>
@@ -24,14 +23,14 @@ const Footer = (props: Props) => {
           {/* <LinkedIn /> */}
         </a>
       </div>
-      <Box sx={{}}>
-        <Typography variant="subtitle1">
+      <div>
+        <p>
           Disclaimer: The data used is not 100% accurate as we do not have ESCOM
           official grid data. All information presented on this site shall not
           be taken as an official statement from ESCOM. For official statements,
           visit ESCOM website.
-        </Typography>
-      </Box>
+        </p>
+      </div>
     </footer>
   );
 };
