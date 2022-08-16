@@ -1,7 +1,24 @@
 import { prisma } from "@/prisma/client";
+import { GroupWithSchedules } from "@/types";
+import { addDays, subDays } from "date-fns";
 
-export const getGroups = async () => {
-  const data = await prisma.group.findMany();
+export const getGroups = async (): Promise<GroupWithSchedules[]> => {
+  const data = await prisma.group.findMany({
+    select: {
+      id: true,
+      createdAt: true,
+      name: true,
+      updatedAt: true,
+      schedules: {
+        where: {
+          start: {
+            gte: subDays(Date.now(), 1).toISOString(),
+            lte: addDays(Date.now(), 1).toISOString(),
+          },
+        },
+      },
+    },
+  });
   return data;
 };
 
@@ -27,5 +44,5 @@ export const getAreasWithRequiredData = async () => {
     },
   });
 
-  return data
+  return data;
 };

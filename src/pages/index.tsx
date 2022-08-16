@@ -18,12 +18,13 @@ import {
   groupsAtoms,
   regionsAtoms,
 } from "@/state/data";
+import { GroupWithSchedules } from "@/types";
 
 interface IHomeProps {
   areas: Area[];
   regions: Region[];
   districts: District[];
-  groups: Group[];
+  groups: GroupWithSchedules[];
 }
 
 const Home: NextPage<IHomeProps> = ({ areas, regions, districts, groups }) => {

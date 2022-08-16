@@ -1,5 +1,5 @@
-export interface Schedule {
-  name: string;
-  period: string;
-  duration: string;
+import { Area, District, Group, Region, Schedule } from "@prisma/client";
+
+export interface GroupWithSchedules extends Group {
+  schedules: Schedule[];
 }

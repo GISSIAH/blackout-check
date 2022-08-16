@@ -1,7 +1,10 @@
+import { GroupInfoSchedule } from "@/components/schedule";
 import Tabs, { Tab, TabContent } from "@/components/ui/tabs";
 import { areasAtoms, districtsAtoms, groupsAtoms } from "@/state/data";
-import { Area, District, Group } from "@prisma/client";
+import { GroupWithSchedules } from "@/types";
+import { Area, District, Group, Schedule } from "@prisma/client";
 import clsx from "clsx";
+import { addDays, isSameDay } from "date-fns";
 import { AnimatePresence } from "framer-motion";
 import { useAtom } from "jotai";
 import React, { useEffect, useState } from "react";
@@ -15,7 +18,7 @@ const FilterGroupData = ({
 }: {
   areas?: Area[];
   districts?: District[];
-  group: Group;
+  group: GroupWithSchedules;
 }) => {
   const [groupedAreas, setGroupedAreas] =
     useState<{ district: District; areas: Area[] }[]>();
@@ -54,24 +57,6 @@ const FilterGroupData = ({
           </div>
         </div>
       ))}
-    </div>
-  );
-};
-
-const GroupInfoSchedule = ({
-  className,
-  group,
-}: {
-  className?: string;
-  group: Group;
-}) => {
-  return (
-    <div className={clsx(className, "")}>
-      <div>
-        <h5 className="font-bold text-lg mb-2">Group {group.name}</h5>
-        <p>Wednesday 2020</p>
-      </div>
-      <div></div>
     </div>
   );
 };

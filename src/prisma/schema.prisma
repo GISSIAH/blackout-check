@@ -47,11 +47,11 @@ model Group {
 
 model Schedule {
   id        String   @id @default(cuid())
-  date      DateTime @db.Timestamptz(3)
-  createdAt DateTime @default(now()) @db.Timestamptz(3)
-  updatedAt DateTime @updatedAt @db.Timestamptz(3)
-  start     DateTime @default(now()) @db.Timestamptz(3)
-  end       DateTime @default(now()) @db.Timestamptz(3)
+  date      DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  start     DateTime @default(now())
+  end       DateTime @default(now())
   group     Group    @relation(fields: [groupId], references: [id])
   groupId   String
 }
