@@ -2,6 +2,7 @@ import Tabs, { Tab, TabContent } from "@/components/ui/tabs";
 import { areasAtoms, districtsAtoms, groupsAtoms } from "@/state/data";
 import { Area, District, Group } from "@prisma/client";
 import clsx from "clsx";
+import { AnimatePresence } from "framer-motion";
 import { useAtom } from "jotai";
 import React, { useEffect, useState } from "react";
 
@@ -92,15 +93,17 @@ const GroupTabsView = (props: Props) => {
           classNames=""
           panelClassNames="h-full overflow-y-scroll overscroll-contain"
         >
-          {groups.map((group) => (
-            <TabContent key={group.id} className="h-full pb-10">
-              <FilterGroupData
-                group={group}
-                areas={areas}
-                districts={districts}
-              />
-            </TabContent>
-          ))}
+          <AnimatePresence exitBeforeEnter>
+            {groups.map((group) => (
+              <TabContent key={group.id} className="h-full pb-10">
+                <FilterGroupData
+                  group={group}
+                  areas={areas}
+                  districts={districts}
+                />
+              </TabContent>
+            ))}{" "}
+          </AnimatePresence>
         </Tabs>
       )}
     </div>

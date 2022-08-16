@@ -1,10 +1,11 @@
 import { FC, PropsWithChildren, ReactNode, useState } from "react";
 import { Tab as TabPrimitive } from "@headlessui/react";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 
 type KeyProp = {
   key?: any | null;
-  className?: string
+  className?: string;
 };
 
 export const Tab: FC<PropsWithChildren<KeyProp>> = ({ children, key }) => {
@@ -29,15 +30,17 @@ export const Tab: FC<PropsWithChildren<KeyProp>> = ({ children, key }) => {
 export const TabContent: FC<PropsWithChildren<KeyProp>> = ({
   children,
   key,
-  className
+  className,
 }) => {
   return (
     <TabPrimitive.Panel
       key={key}
-      className={clsx(
-        "rounded-xl bg-white p-3",
-        "", className
-      )}
+      className={clsx("rounded-xl bg-white p-3", "", className)}
+      as={motion.div}
+      initial={{ y: 10, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: -10, opacity: 0 }}
+      transition={{ duration: 0.2 }}
     >
       {children}
     </TabPrimitive.Panel>
